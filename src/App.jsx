@@ -3,6 +3,8 @@ import { useState, useRef, useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import './App.css'
 
+const baseUrl = 'import.meta.env.BASE_URL'
+
 function Randomizer({ currentPool, setDisplayModal }) {
 	const [highlighted, setHighlight] = useState(0)
 	let deltaTime = useRef(2)
@@ -64,14 +66,14 @@ function Randomizer({ currentPool, setDisplayModal }) {
 		<div className="main-flex-or-whatever-man">
 			<div className="randomizer-container">
 				<div className="pool-view">
-					<img src="public/img/ui/frame.png" className="frame-top" />
-					<img src="public/img/ui/frame.png" className="frame-bottom" />
+					<img src={`${baseUrl}public/img/ui/frame.png`} className="frame-top" />
+					<img src={`${baseUrl}public/img/ui/frame.png`} className="frame-bottom" />
 					{
 						currentPool.map(({ nightfarer, icon }, index) => {
 							return (
 								<div key={index} className="character-icon-container-pool">
-									<img src={`public/img/Portraits/ERN_Icon_Menu_Character_${nightfarer}.webp`} className={`character-icon-img ${index == highlighted ? 'highlight' : ''}`} />
-									{icon == 'None' ? '' : <img src={`public/img/extras/${icon}.png`} className="character-icon-extra" />}
+									<img src={`${baseUrl}public/img/Portraits/ERN_Icon_Menu_Character_${nightfarer}.webp`} className={`character-icon-img ${index == highlighted ? 'highlight' : ''}`} />
+									{icon == 'None' ? '' : <img src={`${baseUrl}public/img/extras/${icon}.png`} className="character-icon-extra" />}
 								</div>
 							)
 						})
@@ -159,20 +161,20 @@ function EditPool({ currentPool, setPool, displayModal, setDisplayModal, modalRe
 					</svg>
 				</div>
 				<div className="add-element-label">
-					<img src="public/img/ui/ornament.png" className="ornament" />
+					<img src={`${baseUrl}public/img/ui/ornament.png`} className="ornament" />
 					- Current Pool -
-					<img src="public/img/ui/ornament.png" className="ornament" />
+					<img src={`${baseUrl}public/img/ui/ornament.png`} className="ornament" />
 				</div>
 				<div className="pool-view-edit-container">
 					<div className="pool-view-edit">
 						{currentPool.map(({ nightfarer, icon }, index) => {
 							return (
 								<div className="pool-view-container-pool" key={index}>
-									<img src={`public/img/Portraits/ERN_Icon_Menu_Character_${nightfarer}.webp`} className="pool-view-character-icon-img" />
+									<img src={`${baseUrl}public/img/Portraits/ERN_Icon_Menu_Character_${nightfarer}.webp`} className="pool-view-character-icon-img" />
 									<svg data-id={index} className="pool-view-character-icon-delete" viewBox="0 0 16 16" onClick={deleteItem}>
 										<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1z" />
 									</svg>
-									<img src={`public/img/extras/${icon}.png`} alt="" className="pool-view-icon" />
+									<img src={`${baseUrl}public/img/extras/${icon}.png`} alt="" className="pool-view-icon" />
 								</div>
 							)
 						})}
@@ -180,16 +182,16 @@ function EditPool({ currentPool, setPool, displayModal, setDisplayModal, modalRe
 				</div>
 
 				<div className="add-element-label">
-					<img src="public/img/ui/ornament.png" className="ornament" />
+					<img src={`${baseUrl}public/img/ui/ornament.png`} className="ornament" />
 					- Add Element -
-					<img src="public/img/ui/ornament.png" className="ornament" />
+					<img src={`${baseUrl}public/img/ui/ornament.png`} className="ornament" />
 				</div>
 
 				<div className="add-character-container">
 					<div className="preview">
 						<div className="character-icon-preview">
-							<img src={`public/img/Portraits/ERN_Icon_Menu_Character_${editItem.nightfarer}.webp`} className="character-icon-img-preview" />
-							{editItem.icon == 'None' ? '' : <img src={`public/img/extras/${editItem.icon}.png`} className="character-icon-extra" />}
+							<img src={`${baseUrl}public/img/Portraits/ERN_Icon_Menu_Character_${editItem.nightfarer}.webp`} className="character-icon-img-preview" />
+							{editItem.icon == 'None' ? '' : <img src={`${baseUrl}public/img/extras/${editItem.icon}.png`} className="character-icon-extra" />}
 						</div>
 					</div>
 					<div className="entry-details-form">
@@ -197,7 +199,7 @@ function EditPool({ currentPool, setPool, displayModal, setDisplayModal, modalRe
 							<label htmlFor="nightfarer" className="label-entry">Select a Nightfarer</label>
 							<span className="custom-button" ref={nightfarerMenuRef} onClick={(e) => { setNightfarerMenu(prev => !prev); e.preventDefault(); }}>
 								<div className="selected">
-									<img src={`public/img/icons/${editItem.nightfarer}-icon.png`} />
+									<img src={`${baseUrl}public/img/icons/${editItem.nightfarer}-icon.png`} />
 									<span className="name">
 										{editItem.nightfarer}
 									</span>
@@ -214,7 +216,7 @@ function EditPool({ currentPool, setPool, displayModal, setDisplayModal, modalRe
 												key={n}
 												onClick={() => { setEditItem(prev => ({ ...prev, nightfarer: n })); }}>
 												<img
-													src={`public/img/icons/${n}-icon.png`} />
+													src={`${baseUrl}public/img/icons/${n}-icon.png`} />
 												{n}
 											</li>)
 									})
@@ -226,7 +228,7 @@ function EditPool({ currentPool, setPool, displayModal, setDisplayModal, modalRe
 							<label htmlFor="nightfarer" className="label-entry">Select an icon (optional)</label>
 							<span className="custom-button" ref={iconMenuRef} onClick={(e) => { setIconMenu(prev => !prev); e.preventDefault(); }}>
 								<div className="selected">
-									{editItem.icon == 'None' ? '' : <img src={`public/img/extras/${editItem.icon}.png`} />}
+									{editItem.icon == 'None' ? '' : <img src={`${baseUrl}public/img/extras/${editItem.icon}.png`} />}
 									<span className="name">
 										{editItem.icon}
 									</span>
@@ -239,7 +241,7 @@ function EditPool({ currentPool, setPool, displayModal, setDisplayModal, modalRe
 								<ul className={`options-list ${iconMenu ? 'show' : ''}`}>
 									{icons.map(i => {
 										return (
-											<li key={i} onClick={() => { setEditItem(prev => ({ ...prev, icon: i })); }}>{i == 'None' ? '' : <img src={`public/img/extras/${i}.png`} />}{i}</li>
+											<li key={i} onClick={() => { setEditItem(prev => ({ ...prev, icon: i })); }}>{i == 'None' ? '' : <img src={`${baseUrl}public/img/extras/${i}.png`} />}{i}</li>
 										)
 									})}
 								</ul>
