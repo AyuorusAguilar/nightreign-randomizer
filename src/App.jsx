@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import './App.css'
 
-const baseUrl = 'import.meta.env.BASE_URL'
+const baseUrl = import.meta.env.BASE_URL
 
 function Randomizer({ currentPool, setDisplayModal }) {
 	const [highlighted, setHighlight] = useState(0)
