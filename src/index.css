@@ -1,0 +1,23 @@
+@font-face {
+	font-family: Baskervville;
+	src: url(fonts/LibreBaskerville-Regular.ttf);
+}
+@font-face {
+	font-family: Calamity;
+	src: url(fonts/Calamity-Regular.woff2);
+}
+@font-face {
+	font-family: CalamityBold;
+	src: url(fonts/Calamity-Bold.otf);
+}
+:root{
+	--black : #010d17;
+	--dark : #021c26;
+	--grey : #0f3e54;
+	--light : #508aa6;
+	--white : 	#93afbf;
+}
+body{
+	padding: 0;
+	margin: 0;
+}
